@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title> Timer test </title>
+
+  </head>
+  <body>
+    <!-- Stop Year:<br><br>
+     <input type="number"  id="year" value="2018"><br><br>
+     Stop Month:<br><br>
+     <input type="number"  id="month" value="2"><br><br>
+     Stop Date:<br><br>
+     <input type="number"  id="date"  >--><br><br>
+     Stop hour in 24 hr format:<br><br>
+     <input type="number"  id="hrs"><br><br>
+     Stop minutes:<br><br>
+     <input type="number"  id="mins"><br><br>
+     Stop seconds:<br>
+     <input type="number"  id="sec"><br><br>
+     <button  id="mybtn">Try it</button>
+     <button id="rstbtn">Reset </button>
+     <button id="pbtn">Pause</button>
+    <p id="demo"></p>
+    <script>
+      var x;
+      document.getElementById('mybtn').addEventListener('click', function(){
+        // logic goes here
+       var hrs = document.getElementById('hrs').value;
+        var mins = document.getElementById('mins').value;
+        var sec = document.getElementById('sec').value;
+      //  var date=document.getElementById('date').value;
+        var end_date = new Date(2018,2,23,hrs,mins,sec,0);
+
+          x = setInterval(function(){
+          var start_date = new Date().getTime();
+          var difference = end_date.getTime() - start_date;//.getTime();
+          if(end_date<start_date){
+              document.getElementById("demo").innerHTML = "EXPIRED";
+              clearInterval(x);
+          }
+
+          var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+          var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+          document.getElementById("demo").innerHTML =
+          hours + "h "+ minutes + "m " + seconds + "s ";
+        }, 1000);
+      });
+
+      //Reset button coding
+      document.getElementById('rstbtn').addEventListener('click', function(){
+      //  document.getElementById("date").value="";
+        clearInterval(x);
+        document.getElementById("hrs").value="";
+        document.getElementById("sec").value="";
+        document.getElementById("mins").value="";
+        document.getElementById("demo").innerHTML =
+        0 + "h "+ 0 + "m " + 0 + "s ";
+      });
+
+      //pause button coding
+    //  <button onclick="clearInterval(myVar)">Stop time</button>
+     document.getElementById('pbtn').addEventListener('click', function(){
+
+  var myVar = setInterval(myTimer ,1000);
+  function myTimer() {
+      var d = new Date();
+        var end_date = new Date(2018,2,23,hours,minutes,seconds,0).getTime();
+      document.getElementById("demo").innerHTML = d.toLocaleTimeString();
+  }
+
+})
+    </script>
+  </body>
+</html>
