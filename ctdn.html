@@ -28,8 +28,9 @@
         var mins = document.getElementById('mins').value;
         var sec = document.getElementById('sec').value;
       //  var date=document.getElementById('date').value;
-        var end_date = new Date(2018,2,27,hrs,mins,sec,0);
-
+        var end_date = new Date(2018,2,28,hrs,mins,sec,0);
+        var end_date = new Date(new Date().getTime()+(hrs*60*60*1000)+(mins*60*1000)+(sec*1000));
+        
           x = setInterval(function(){
           var start_date = new Date();
           var difference = end_date.getTime() - start_date.getTime();
