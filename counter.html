@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title> Timer test </title>
+
+  </head>
+  <body>
+    <!-- Stop Year:<br><br>
+     <input type="number"  id="year" value="2018"><br><br>
+     Stop Month:<br><br>
+     <input type="number"  id="month" value="2"><br><br>
+     Stop Date:<br><br>
+     <input type="number"  id="date"  >--><br><br>
+     Stop hour in 24 hr format:<br><br>
+     <input type="number"  id="hrs"><br><br>
+     Stop minutes:<br><br>
+     <input type="number"  id="mins"><br><br>
+     Stop seconds:<br>
+     <input type="number"  id="sec"><br><br>
+     <!--<button  id="mybtn" onclick="">Try it</button>-->
+     <button onclick="myFunction()">Try it</button>
+  <!--  <button id="rstbtn">Reset </button>
+     <button id="pbtn">Pause</button>-->
+    <p id="demo"></p>
+    <script>
+      var x, hours, minutes, seconds,tot1;
+    //  document.getElementById('mybtn').addEventListener('click', function(){
+        // logic goes here
+        var hrs = document.getElementById('hrs').value;
+        var mins = document.getElementById('mins').value;
+        var sec = document.getElementById('sec').value;
+        hours=hrs*3600000;
+        minutes=mins*60000;
+        seconds=sec*1000;
+        tot1=hours+minutes+seconds;
+        console.log(parseInt(tot1));
+        //hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        //minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        //seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        var myVar;
+
+        function myFunction() {
+        myVar = setTimeout(alertFunc,parseInt(tot1) );
+        }
+
+        function alertFunc() {
+          alert("Hello!");
+}
+      //  var date=document.getElementById('date').value;
+        /*var end_date = new Date(2018,2,27,hrs,mins,sec,0);
+
+          x = setInterval(function(){
+          var start_date = new Date();
+          var difference = end_date.getTime() - start_date.getTime();
+          var miliDiff = start_date.getMilliseconds()- end_date.getMilliseconds();
+          //var miliDiff = start_date.getTime()- end_date.getTime();
+          console.log(miliDiff);
+          console.log(difference);
+          console.log(end_date);
+          console.log(start_date);
+          if(miliDiff<0){
+              document.getElementById("demo").innerHTML = "EXPIRED";
+              clearInterval(x);
+          }
+
+          hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+          seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+          document.getElementById("demo").innerHTML =
+          hours + "h "+ minutes + "m " + seconds + "s ";
+        }, 1000);*/
+    //  });
+/*
+      //Reset button coding
+      document.getElementById('rstbtn').addEventListener('click', function(){
+      //  document.getElementById("date").value="";
+        clearInterval(x);
+        document.getElementById("hrs").value="";
+        document.getElementById("sec").value="";
+        document.getElementById("mins").value="";
+        document.getElementById("demo").innerHTML =
+        0 + "h "+ 0 + "m " + 0 + "s ";
+      });
+
+      //pause button coding
+
+     document.getElementById('pbtn').addEventListener('click', function(){
+       clearInterval(x);
+     });*/
+    </script>
+  </body>
+</html>
