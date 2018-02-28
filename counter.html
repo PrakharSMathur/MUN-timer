@@ -1,93 +1,78 @@
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title> Timer test </title>
-
-  </head>
-  <body>
-    <!-- Stop Year:<br><br>
-     <input type="number"  id="year" value="2018"><br><br>
-     Stop Month:<br><br>
-     <input type="number"  id="month" value="2"><br><br>
-     Stop Date:<br><br>
-     <input type="number"  id="date"  >--><br><br>
-     Stop hour in 24 hr format:<br><br>
-     <input type="number"  id="hrs"><br><br>
-     Stop minutes:<br><br>
-     <input type="number"  id="mins"><br><br>
-     Stop seconds:<br>
-     <input type="number"  id="sec"><br><br>
-     <!--<button  id="mybtn" onclick="">Try it</button>-->
-     <button onclick="myFunction()">Try it</button>
-  <!--  <button id="rstbtn">Reset </button>
-     <button id="pbtn">Pause</button>-->
-    <p id="demo"></p>
-    <script>
-      var x, hours, minutes, seconds,tot1;
-    //  document.getElementById('mybtn').addEventListener('click', function(){
-        // logic goes here
-        var hrs = document.getElementById('hrs').value;
-        var mins = document.getElementById('mins').value;
-        var sec = document.getElementById('sec').value;
-        hours=hrs*3600000;
-        minutes=mins*60000;
-        seconds=sec*1000;
-        tot1=hours+minutes+seconds;
-        console.log(parseInt(tot1));
-        //hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        //minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        //seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        var myVar;
-
-        function myFunction() {
-        myVar = setTimeout(alertFunc,parseInt(tot1) );
-        }
-
-        function alertFunc() {
-          alert("Hello!");
+<head>
+<style>
+p {
+  text-align: center;
+  font-size: 60px;
+  margin-top:0px;
 }
-      //  var date=document.getElementById('date').value;
-        /*var end_date = new Date(2018,2,27,hrs,mins,sec,0);
+</style>
+</head>
+<body>
+  Stop hour in 24 hr format:<br><br>
+  <input type="number"  id="hrs"><br><br>
+  Stop minutes:<br><br>
+  <input type="number"  id="mins"><br><br>
+  Stop seconds:<br>
+  <input type="number"  id="sec"><br><br>
+  <button  id="mybtn">Try it</button>
+  <button id="rstbtn">Reset </button>
+  <button id="pbtn">Pause</button>
+<p id="demo"></p>
 
-          x = setInterval(function(){
-          var start_date = new Date();
-          var difference = end_date.getTime() - start_date.getTime();
-          var miliDiff = start_date.getMilliseconds()- end_date.getMilliseconds();
-          //var miliDiff = start_date.getTime()- end_date.getTime();
-          console.log(miliDiff);
-          console.log(difference);
-          console.log(end_date);
-          console.log(start_date);
-          if(miliDiff<0){
-              document.getElementById("demo").innerHTML = "EXPIRED";
-              clearInterval(x);
-          }
+<script>
+var x, hours, minutes, seconds;
+document.getElementById('mybtn').addEventListener('click', function(){
+  // logic goes here
+  var hrs = document.getElementById('hrs').value;
+  var mins = document.getElementById('mins').value;
+  var sec = document.getElementById('sec').value;
+// Set the date we're counting down to
+  var  countDownDate = Date.now()+(hrs*60*60*1000)+(mins*60*1000)+(sec*1000);
 
-          hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-          seconds = Math.floor((difference % (1000 * 60)) / 1000);
+// Update the count down every 1 second
+    var x = setInterval(function() {
 
-          document.getElementById("demo").innerHTML =
-          hours + "h "+ minutes + "m " + seconds + "s ";
-        }, 1000);*/
-    //  });
-/*
-      //Reset button coding
-      document.getElementById('rstbtn').addEventListener('click', function(){
-      //  document.getElementById("date").value="";
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+
+     hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+     minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+     seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML =  hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // If the count down is over, write some text
+    if (distance < 0) {
         clearInterval(x);
-        document.getElementById("hrs").value="";
-        document.getElementById("sec").value="";
-        document.getElementById("mins").value="";
-        document.getElementById("demo").innerHTML =
-        0 + "h "+ 0 + "m " + 0 + "s ";
-      });
+        document.getElementById("demo").innerHTML = "EXPIRED";
+    }
+}, 500);
+//Reset button coding
+document.getElementById('rstbtn').addEventListener('click', function(){
+//  document.getElementById("date").value="";
+  clearInterval(x);
+  document.getElementById("hrs").value="";
+  document.getElementById("sec").value="";
+  document.getElementById("mins").value="";
+  document.getElementById("demo").innerHTML =
+  0 + "h "+ 0 + "m " + 0 + "s ";
+});
 
-      //pause button coding
+//pause button coding
+  document.getElementById('pbtn').addEventListener('click', function(){
+    clearInterval(x);
+  });
+});
+</script>
 
-     document.getElementById('pbtn').addEventListener('click', function(){
-       clearInterval(x);
-     });*/
-    </script>
-  </body>
+</body>
 </html>
