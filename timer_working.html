@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>     /* basic CSS for display of timer*/
+p {
+  text-align: center;
+  font-size: 60px;
+  margin-top:0px;
+}
+</style>
+</head>
+<body>
+  Stop hour in 24 hr format:<br><br>
+  <input type="number"  id="hrs"><br><br>           <!-- Gets number of hours from user,can be left null-->
+  Stop minutes:<br><br>
+  <input type="number"  id="mins"><br><br>          <!--Gets number of minutes from user,can be left null-->
+  Stop seconds:<br>
+  <input type="number"  id="sec"><br><br>           <!--Gets number of seconds from user,can be left null-->
+  <button  id="mybtn">Start</button>                <!--Starts timer-->
+  <button id="rstbtn">Reset </button>               <!--Resets timer; Clears text fields,displays time as 0h0m0s-->
+  <button id="pbtn">Stop</button>                   <!--Pauses timer; Keeps on static display of time when button is clicked-->
+<p id="demo"></p>                                   <!--Where the time is displayed-->
+
+<script>
+var x, hours, minutes, seconds;
+//
+document.getElementById('mybtn').addEventListener('click', function(){          // what happens when the Start button is clicked
+  // logic goes here
+  var hrs = document.getElementById('hrs').value;                               //    Gets time
+  var mins = document.getElementById('mins').value;                             //    values from
+  var sec = document.getElementById('sec').value;                               //     user for countdown
+// Set the date we're counting down to
+  var  countDownDate = Date.now()+(hrs*60*60*1000)+(mins*60*1000)+(sec*1000);
+
+// Update the count down every 1 second
+    var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now an the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+
+     hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+     minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+     seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML =  hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // If the count down is over, write some text
+    if (distance < 0) {
+        clearInterval(x);                                                       // pauses timer
+        document.getElementById("demo").innerHTML = "EXPIRED";                  // sets time to expired
+    }
+    }, 500);   // refreshes timer every 500 Milliseconds
+//Reset button coding
+document.getElementById('rstbtn').addEventListener('click', function(){
+
+  clearInterval(x);                                                             // stops timer at the instant
+  document.getElementById("hrs").value="";                                      // clears text field
+  document.getElementById("sec").value="";                                      // clears text field
+  document.getElementById("mins").value="";                                     // clears text field
+  document.getElementById("demo").innerHTML =
+  0 + "h "+ 0 + "m " + 0 + "s ";                                                // sets time to 0h0m0s
+});
+
+//Pause button coding
+  document.getElementById('pbtn').addEventListener('click', function(){
+    clearInterval(x);                                                           // stops timer at the instant
+  });
+});
+</script>
+
+</body>
+</html>
